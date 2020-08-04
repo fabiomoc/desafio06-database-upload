@@ -13,7 +13,9 @@ transactionsRouter.get('/', async (request, response) => {
 
   const transactions = await transactionsRepository.find();
 
-  return response.json(transactions);
+  const balance = await transactionsRepository.getBalance();
+
+  return response.json({ transactions, balance });
 });
 
 transactionsRouter.post('/', async (request, response) => {
